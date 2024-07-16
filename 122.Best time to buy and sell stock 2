@@ -1,0 +1,48 @@
+class Solution {
+
+private:
+        bool  issortedreverse(vector<int> &arr){
+                int n=arr.size();
+                for(int i=1;i<n;i++){
+                    if(arr[i-1]<arr[i]){
+                        return false;
+                    }
+                }
+                
+                 return true;
+                
+            }    
+public:
+    int maxProfit(vector<int>& prices) {
+
+        int ans;
+        int  n=prices.size();
+        int diff,res=0;
+        
+        if(is_sorted(prices.begin(),prices.end())){
+            ans=prices[n-1]-prices[0];
+            return ans;
+        }
+
+        else if(issortedreverse(prices)){
+            return 0;
+        }
+        
+
+        
+        else{
+
+        for(int i=1;i<n;i++){
+            if(prices[i-1]<prices[i]){
+                diff=prices[i]-prices[i-1];
+                res=res+diff;
+            }
+            else{ continue;}
+        }
+        return res;
+        }
+
+
+        
+    }
+};
